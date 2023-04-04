@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,7 +19,7 @@ namespace CabinetMedical
         private DateTime dataAngajarii { get; set; }
         private Int32 salariul { get; set; }
 
-        public Medic(String nume, String prenume, String specializare, String telefon, String email, int varsta, String cnp, DateTime dataAngajarii, int salariul)
+        public Medic(String nume, String prenume, String specializare, String telefon, String email, Int32 varsta, String cnp, DateTime dataAngajarii, Int32 salariul)
         {
             this.nume = nume;
             this.prenume = prenume;
