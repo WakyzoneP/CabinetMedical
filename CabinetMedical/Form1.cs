@@ -32,7 +32,20 @@ namespace CabinetMedical
             this.panelForm.Tag = childForm;
             childForm.BringToFront();
             childForm.Show();
-            lbTitlu.Text = childForm.Text;
+        }
+
+        private void MedicButton_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new Forms.MedicForm(), sender);
+        }
+
+        private void PacientButton_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new Forms.PacientForm(), sender);
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
 
         }
     }
