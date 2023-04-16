@@ -38,9 +38,10 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(419, 319);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(138, 51);
+            this.label1.Size = new System.Drawing.Size(167, 51);
             this.label1.TabIndex = 0;
             this.label1.Text = "Pacient";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -50,15 +51,15 @@
             this.label2.Size = new System.Drawing.Size(0, 25);
             this.label2.TabIndex = 1;
             // 
-            // MedicForm
+            // PacientForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PeachPuff;
-            this.ClientSize = new System.Drawing.Size(1174, 750);
+            this.ClientSize = new System.Drawing.Size(1198, 750);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "MedicForm";
+            this.Name = "PacientForm";
             this.Text = "MedicForm";
             this.ResumeLayout(false);
             this.PerformLayout();
