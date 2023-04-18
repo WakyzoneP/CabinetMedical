@@ -9,38 +9,29 @@ namespace CabinetMedical
     internal class Pacient
     {
         private readonly string name;
-        private readonly string surname;
+        private readonly string prenume;
         private readonly string cnp;
-        private readonly string address;
-        private readonly string phone;
+        private readonly string adresa;
+        private readonly string telefon;
         private readonly string email;
-        private readonly string phoneNumber;
-        private readonly string birthDate;
+        private readonly DateTime dataNastere;
+        private readonly Int32 varsta;
 
-        public Pacient(string name, string surname, string cnp, string address, string phone, string email, string phoneNumber, string birthDate)
+        public Pacient(string name, string prenume, string cnp, string adresa, string telefon, string email, DateTime dataNastere, Int32 varsta)
         {
             this.name = name;
-            this.surname = surname;
+            this.prenume = prenume;
             this.cnp = cnp;
-            this.address = address;
-            this.phone = phone;
+            this.adresa = adresa;
+            this.telefon = telefon;
             this.email = email;
-            this.phoneNumber = phoneNumber;
-            this.birthDate = birthDate;
+            this.dataNastere = dataNastere;
+            this.varsta = varsta;
         }
-
-        public string Name { get => name; }
-        public string Surname { get => surname; }
-        public string Cnp { get => cnp; }
-        public string Address { get => address; }
-        public string Phone { get => phone; }
-        public string Email { get => email; }
-        public string PhoneNumber { get => phoneNumber; }
-        public string BirthDate { get => birthDate; }
 
         public override string ToString()
         {
-            return "Nume: " + name + " Prenume: " + surname + " CNP: " + cnp + " Adresa: " + address + " Telefon: " + phone + " Email: " + email + " Numar Telefon: " + phoneNumber + " Data Nasterii: " + birthDate;
+            return "Nume: " + name + "\nPrenume: " + prenume + "\nVarsta: " + varsta + "\nCNP: " + cnp + "\nAdresa: " + adresa + "\nTelefon: " + telefon + "\nEmail: " + email + "\nData nasterii: " + dataNastere.ToLongDateString() + '\n';
         }
     }
 }

@@ -12,7 +12,7 @@ namespace CabinetMedical.Forms
 {
     public partial class MedicForm : Form
     {
-        private List<Medic> medicList = new List<Medic>();
+        private readonly List<Medic> medicList = new List<Medic>();
         public MedicForm()
         {
             InitializeComponent();
