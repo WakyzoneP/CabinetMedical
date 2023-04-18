@@ -81,13 +81,14 @@
             this.RetetaButton.TabIndex = 4;
             this.RetetaButton.Text = "&Retete";
             this.RetetaButton.UseVisualStyleBackColor = false;
+            this.RetetaButton.Click += new System.EventHandler(this.RetetaButton_Click);
             // 
             // panelForm
             // 
             this.panelForm.BackColor = System.Drawing.Color.PeachPuff;
             this.panelForm.Location = new System.Drawing.Point(438, 78);
             this.panelForm.Name = "panelForm";
-            this.panelForm.Size = new System.Drawing.Size(1200, 821);
+            this.panelForm.Size = new System.Drawing.Size(1224, 821);
             this.panelForm.TabIndex = 5;
             // 
             // Form1

@@ -55,7 +55,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PeachPuff;
-            this.ClientSize = new System.Drawing.Size(1174, 750);
+            this.ClientSize = new System.Drawing.Size(1198, 750);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "MedicForm";

@@ -48,5 +48,10 @@ namespace CabinetMedical
         {
 
         }
+
+        private void RetetaButton_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new Forms.RetetaForm(), sender);
+        }
     }
 }
