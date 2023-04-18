@@ -28,7 +28,7 @@ namespace CabinetMedical
         public DateTime Data { get => data; }
         public override string ToString()
         {
-            return "Medic: " + medic + "\nPacient: " + pacient + "\nData: " + data.ToLongDateString() + "\nDiagnostic: \n" + diagnostic + "\nTratament: \n" + tratament;
+            return "Medic: " + medic + "\nPacient: " + pacient + "\nData: " + data.ToLongDateString() + "\nDiagnostic: \n" + diagnostic + "\nTratament: \n" + tratament + '\n';
         }
     }
 }

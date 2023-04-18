@@ -34,7 +34,7 @@ namespace CabinetMedical
 
         public override string ToString()
         {
-            return "Nume: " + nume + " Prenume: " + prenume + " Specializare: " + specializare + " Telefon: " + telefon + " Email: " + email + " Varsta: " + varsta + " CNP: " + cnp + " Data angajarii: " + dataAngajarii + " Salariul: " + salariul;
+            return "Nume: " + nume + "\nPrenume: " + prenume + "\nSpecializare: " + specializare + "\nTelefon: " + telefon + "\nEmail: " + email + "\nVarsta: " + varsta + "\nCNP: " + cnp + "\nData angajarii: " + dataAngajarii.ToLongDateString() + "\nSalariul: " + salariul + '\n';
         }
 
 

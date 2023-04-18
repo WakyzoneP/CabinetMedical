@@ -63,9 +63,9 @@
             // SubmitButton
             // 
             this.SubmitButton.Font = new System.Drawing.Font("Arial", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SubmitButton.Location = new System.Drawing.Point(356, 634);
+            this.SubmitButton.Location = new System.Drawing.Point(338, 634);
             this.SubmitButton.Name = "SubmitButton";
-            this.SubmitButton.Size = new System.Drawing.Size(218, 69);
+            this.SubmitButton.Size = new System.Drawing.Size(236, 69);
             this.SubmitButton.TabIndex = 2;
             this.SubmitButton.Text = "Inregistrare";
             this.SubmitButton.UseVisualStyleBackColor = true;
@@ -160,6 +160,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.BackColor = System.Drawing.Color.PeachPuff;
             this.ClientSize = new System.Drawing.Size(1198, 750);
             this.Controls.Add(this.SaveDataButton);
