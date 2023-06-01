@@ -8,30 +8,32 @@ namespace CabinetMedical
 {
     internal class Pacient
     {
-        private readonly string name;
-        private readonly string prenume;
-        private readonly string cnp;
-        private readonly string adresa;
-        private readonly string telefon;
-        private readonly string email;
-        private readonly DateTime dataNastere;
-        private readonly Int32 varsta;
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Prenume { get; set; }
+        public string CNP { get; set; }
+        public string Adresa { get; set; }
+        public string Telefon { get; set; }
+        public string Email { get; set; }
+        public DateTime DataNastere { get; set; }
+        public int Varsta { get; set; }
 
-        public Pacient(string name, string prenume, string cnp, string adresa, string telefon, string email, DateTime dataNastere, Int32 varsta)
+        public Pacient(int id = 0, string name="Anonim", string prenume="Anonim", string cnp="0000000000000", string adresa="Necunoscuta", string telefon="0000000000", string email="na@na.com", DateTime dataNastere=new DateTime(), int varsta=0)
         {
-            this.name = name;
-            this.prenume = prenume;
-            this.cnp = cnp;
-            this.adresa = adresa;
-            this.telefon = telefon;
-            this.email = email;
-            this.dataNastere = dataNastere;
-            this.varsta = varsta;
+            Id = id;
+            Name = name;
+            Prenume = prenume;
+            CNP = cnp;
+            Adresa = adresa;
+            Telefon = telefon;
+            Email = email;
+            DataNastere = dataNastere;
+            Varsta = varsta;
         }
 
         public override string ToString()
         {
-            return "Nume: " + name + "\nPrenume: " + prenume + "\nVarsta: " + varsta + "\nCNP: " + cnp + "\nAdresa: " + adresa + "\nTelefon: " + telefon + "\nEmail: " + email + "\nData nasterii: " + dataNastere.ToLongDateString() + '\n';
+            return Name + " " + Prenume;
         }
     }
 }

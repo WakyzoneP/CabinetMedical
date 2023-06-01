@@ -11,7 +11,7 @@ namespace CabinetMedical.Forms
             InitializeComponent();
         }
 
-        public bool CheckValidation()
+        public bool checkValidation()
         {
             if (NumeTextBox.Text == "" || PrenumeTextBox.Text == "" || SpecializareTextBox.Text == "" || TelefonTextBox.Text == "" || EmailTextBox.Text == "" || VarstaTextBox.Text == "" || CNPTextBox.Text == "" || DataAngajareDateTimePicker.Text == "" || SalariulTextBox.Text == "")
             {

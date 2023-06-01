@@ -185,6 +185,7 @@
             this.pacientToolStripMenuItem.Name = "pacientToolStripMenuItem";
             this.pacientToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
             this.pacientToolStripMenuItem.Text = "Pacient";
+            this.pacientToolStripMenuItem.Click += new System.EventHandler(this.pacientToolStripMenuItem_Click);
             // 
             // retetaToolStripMenuItem
             // 
