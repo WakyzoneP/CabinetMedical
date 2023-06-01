@@ -44,6 +44,12 @@
             this.medicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pacientToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.retetaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mediciToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.pacientiToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.reteteToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -111,9 +117,10 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.saveToolStripMenuItem});
+            this.saveToolStripMenuItem,
+            this.openToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(71, 44);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(71, 38);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // saveToolStripMenuItem
@@ -123,7 +130,7 @@
             this.pacientiToolStripMenuItem,
             this.reteteToolStripMenuItem});
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(197, 44);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
             this.saveToolStripMenuItem.Text = "Save";
             // 
             // mediciToolStripMenuItem
@@ -136,14 +143,16 @@
             // pacientiToolStripMenuItem
             // 
             this.pacientiToolStripMenuItem.Name = "pacientiToolStripMenuItem";
-            this.pacientiToolStripMenuItem.Size = new System.Drawing.Size(229, 44);
+            this.pacientiToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
             this.pacientiToolStripMenuItem.Text = "Pacienti";
+            this.pacientiToolStripMenuItem.Click += new System.EventHandler(this.pacientiToolStripMenuItem_Click);
             // 
             // reteteToolStripMenuItem
             // 
             this.reteteToolStripMenuItem.Name = "reteteToolStripMenuItem";
-            this.reteteToolStripMenuItem.Size = new System.Drawing.Size(229, 44);
+            this.reteteToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
             this.reteteToolStripMenuItem.Text = "Retete";
+            this.reteteToolStripMenuItem.Click += new System.EventHandler(this.reteteToolStripMenuItem_Click);
             // 
             // listView
             // 
@@ -158,7 +167,9 @@
             // insertToolStripMenuItem
             // 
             this.insertToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.insertToolStripMenuItem1});
+            this.insertToolStripMenuItem1,
+            this.updateToolStripMenuItem,
+            this.deleteToolStripMenuItem});
             this.insertToolStripMenuItem.Name = "insertToolStripMenuItem";
             this.insertToolStripMenuItem.Size = new System.Drawing.Size(121, 38);
             this.insertToolStripMenuItem.Text = "Manage";
@@ -193,6 +204,51 @@
             this.retetaToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
             this.retetaToolStripMenuItem.Text = "Reteta";
             this.retetaToolStripMenuItem.Click += new System.EventHandler(this.retetaToolStripMenuItem_Click);
+            // 
+            // openToolStripMenuItem
+            // 
+            this.openToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mediciToolStripMenuItem1,
+            this.pacientiToolStripMenuItem1,
+            this.reteteToolStripMenuItem1});
+            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
+            this.openToolStripMenuItem.Text = "Open";
+            // 
+            // mediciToolStripMenuItem1
+            // 
+            this.mediciToolStripMenuItem1.Name = "mediciToolStripMenuItem1";
+            this.mediciToolStripMenuItem1.Size = new System.Drawing.Size(359, 44);
+            this.mediciToolStripMenuItem1.Text = "Medici";
+            this.mediciToolStripMenuItem1.Click += new System.EventHandler(this.mediciToolStripMenuItem1_Click);
+            // 
+            // pacientiToolStripMenuItem1
+            // 
+            this.pacientiToolStripMenuItem1.Name = "pacientiToolStripMenuItem1";
+            this.pacientiToolStripMenuItem1.Size = new System.Drawing.Size(359, 44);
+            this.pacientiToolStripMenuItem1.Text = "Pacienti";
+            this.pacientiToolStripMenuItem1.Click += new System.EventHandler(this.pacientiToolStripMenuItem1_Click);
+            // 
+            // reteteToolStripMenuItem1
+            // 
+            this.reteteToolStripMenuItem1.Name = "reteteToolStripMenuItem1";
+            this.reteteToolStripMenuItem1.Size = new System.Drawing.Size(359, 44);
+            this.reteteToolStripMenuItem1.Text = "Retete";
+            this.reteteToolStripMenuItem1.Click += new System.EventHandler(this.reteteToolStripMenuItem1_Click);
+            // 
+            // updateToolStripMenuItem
+            // 
+            this.updateToolStripMenuItem.Name = "updateToolStripMenuItem";
+            this.updateToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
+            this.updateToolStripMenuItem.Text = "Update";
+            this.updateToolStripMenuItem.Click += new System.EventHandler(this.updateToolStripMenuItem_Click);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
+            this.deleteToolStripMenuItem.Text = "Delete";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -232,6 +288,12 @@
         private System.Windows.Forms.ToolStripMenuItem medicToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pacientToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem retetaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mediciToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem pacientiToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem reteteToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem updateToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
     }
 }
 

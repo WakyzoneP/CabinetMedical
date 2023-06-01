@@ -2,6 +2,7 @@
 
 namespace CabinetMedical
 {
+    [Serializable]
     internal class Reteta
     {
         public int Id { get; set; }

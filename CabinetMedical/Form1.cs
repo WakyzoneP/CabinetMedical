@@ -2,6 +2,8 @@
 using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
 
 namespace CabinetMedical
@@ -65,18 +67,18 @@ namespace CabinetMedical
                 foreach (Pacient pacient in pacienti)
                 {
                     ListViewItem item = new ListViewItem(pacient.Id.ToString());
-                    item.SubItems.Add(pacient.Name);
+                    item.SubItems.Add(pacient.Nume);
                     item.SubItems.Add(pacient.Prenume);
                     item.SubItems.Add(pacient.CNP);
                     item.SubItems.Add(pacient.Adresa);
                     item.SubItems.Add(pacient.Telefon);
                     item.SubItems.Add(pacient.Email);
                     item.SubItems.Add(pacient.Varsta.ToString());
-                    item.SubItems.Add(pacient.DataNastere.ToString());
+                    item.SubItems.Add(pacient.DataNasterii.ToString());
                     listView.Items.Add(item);
                 }
             }
-            if(listShow == "retete")
+            if (listShow == "retete")
             {
                 listView.Items.Clear();
                 listView.Columns.Clear();
@@ -155,7 +157,7 @@ namespace CabinetMedical
             PacientForm pacientForm = new PacientForm();
             Pacient pacient = new Pacient();
             pacientForm.IdTextBox.Text = pacienti.Count.ToString();
-            pacientForm.NumeTextBox.Text = pacient.Name.ToString();
+            pacientForm.NumeTextBox.Text = pacient.Nume.ToString();
             pacientForm.PrenumeTextBox.Text = pacient.Prenume.ToString();
             pacientForm.CNPTextBox.Text = pacient.CNP.ToString();
             pacientForm.AdresaTextBox.Text = pacient.Adresa.ToString();
@@ -166,14 +168,14 @@ namespace CabinetMedical
             if (pacientForm.checkValidation() && result == DialogResult.OK)
             {
                 pacient.Id = int.Parse(pacientForm.IdTextBox.Text);
-                pacient.Name = pacientForm.NumeTextBox.Text;
+                pacient.Nume = pacientForm.NumeTextBox.Text;
                 pacient.Prenume = pacientForm.PrenumeTextBox.Text;
                 pacient.CNP = pacientForm.CNPTextBox.Text;
                 pacient.Adresa = pacientForm.AdresaTextBox.Text;
                 pacient.Telefon = pacientForm.TelefonTextBox.Text;
                 pacient.Email = pacientForm.EmailTextBox.Text;
                 pacient.Varsta = int.Parse(pacientForm.VarstaTextBox.Text);
-                pacient.DataNastere = pacientForm.DataNasteriiDateTimePicker.Value;
+                pacient.DataNasterii = pacientForm.DataNasteriiDateTimePicker.Value;
                 pacienti.Add(pacient);
                 updateListView();
             }
@@ -204,7 +206,245 @@ namespace CabinetMedical
 
         private void mediciToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            String filename = Interaction.InputBox("Introduceti numele fisierului", "Medici", "medici.txt");
+            try
+            {
+                String filename = Interaction.InputBox("Introduceti numele fisierului(.dat)", "Medici", "medici.txt");
+                FileStream fileStream = new FileStream(filename, FileMode.Create);
+                BinaryFormatter binaryFormatter = new BinaryFormatter();
+                binaryFormatter.Serialize(fileStream, medici);
+                fileStream.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Eroare", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        private void pacientiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                String filename = Interaction.InputBox("Introduceti numele fisierului(.dat)", "Pacienti", "pacienti.txt");
+                FileStream fileStream = new FileStream(filename, FileMode.Create);
+                BinaryFormatter binaryFormatter = new BinaryFormatter();
+                binaryFormatter.Serialize(fileStream, pacienti);
+                fileStream.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Eroare", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void reteteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                String filename = Interaction.InputBox("Introduceti numele fisierului(.dat)", "Retete", "retete.txt");
+                FileStream fileStream = new FileStream(filename, FileMode.Create);
+                BinaryFormatter binaryFormatter = new BinaryFormatter();
+                binaryFormatter.Serialize(fileStream, retete);
+                fileStream.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Eroare", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void mediciToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                String filename = Interaction.InputBox("Introduceti numele fisierului(.dat)", "Medici", "medici.txt");
+                FileStream fileStream = new FileStream(filename, FileMode.Open);
+                BinaryFormatter binaryFormatter = new BinaryFormatter();
+                try
+                {
+                    medici = (List<Medic>)binaryFormatter.Deserialize(fileStream);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Eroare", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                fileStream.Close();
+                updateListView();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Eroare", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void pacientiToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                String filename = Interaction.InputBox("Introduceti numele fisierului(.dat)", "Pacienti", "pacienti.txt");
+                FileStream fileStream = new FileStream(filename, FileMode.Open);
+                BinaryFormatter binaryFormatter = new BinaryFormatter();
+                try
+                {
+                    pacienti = (List<Pacient>)binaryFormatter.Deserialize(fileStream);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Eroare", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                fileStream.Close();
+                updateListView();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Eroare", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void reteteToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                String filestream = Interaction.InputBox("Introduceti numele fisierului(.dat)", "Retete", "retete.txt");
+                FileStream fileStream = new FileStream(filestream, FileMode.Open);
+                BinaryFormatter binaryFormatter = new BinaryFormatter();
+                try
+                {
+                    retete = (List<Reteta>)binaryFormatter.Deserialize(fileStream);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Eroare", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                fileStream.Close();
+                updateListView();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Eroare", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void updateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(listView.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Selectati un element din lista");
+                return;
+            }
+            if(listShow == "medici" && medici.Count > 0)
+            {
+                ListViewItem item = listView.SelectedItems[0];
+                int position = item.Index;
+                MedicForm medicForm = new MedicForm();
+                medicForm.IdTextBox.Text = item.SubItems[0].Text;
+                medicForm.NumeTextBox.Text = item.SubItems[1].Text;
+                medicForm.PrenumeTextBox.Text = item.SubItems[2].Text;
+                medicForm.SpecializareTextBox.Text = item.SubItems[3].Text;
+                medicForm.TelefonTextBox.Text = item.SubItems[4].Text;
+                medicForm.EmailTextBox.Text = item.SubItems[5].Text;
+                medicForm.VarstaTextBox.Text = item.SubItems[6].Text;
+                medicForm.CNPTextBox.Text = item.SubItems[7].Text;
+                medicForm.DataAngajareDateTimePicker.Value = DateTime.Parse(item.SubItems[8].Text);
+                medicForm.SalariulTextBox.Text = item.SubItems[9].Text;
+                DialogResult result = medicForm.ShowDialog();
+                if(medicForm.checkValidation() && result == DialogResult.OK)
+                {
+                    medici[position].Id = int.Parse(medicForm.IdTextBox.Text);
+                    medici[position].Nume = medicForm.NumeTextBox.Text;
+                    medici[position].Prenume = medicForm.PrenumeTextBox.Text;
+                    medici[position].Specializare = medicForm.SpecializareTextBox.Text;
+                    medici[position].Telefon = medicForm.TelefonTextBox.Text;
+                    medici[position].Email = medicForm.EmailTextBox.Text;
+                    medici[position].Varsta = int.Parse(medicForm.VarstaTextBox.Text);
+                    medici[position].CNP = medicForm.CNPTextBox.Text;
+                    medici[position].DataAngajarii = medicForm.DataAngajareDateTimePicker.Value;
+                    medici[position].Salariul = int.Parse(medicForm.SalariulTextBox.Text);
+                    updateListView();
+                }
+            }
+            if(listShow == "pacienti" && pacienti.Count > 0)
+            {
+                ListViewItem item = listView.SelectedItems[0];
+                int position = item.Index;
+                PacientForm pacientForm = new PacientForm();
+                pacientForm.IdTextBox.Text = item.SubItems[0].Text;
+                pacientForm.NumeTextBox.Text = item.SubItems[1].Text;
+                pacientForm.PrenumeTextBox.Text = item.SubItems[2].Text;
+                pacientForm.CNPTextBox.Text = item.SubItems[3].Text;
+                pacientForm.AdresaTextBox.Text = item.SubItems[4].Text;
+                pacientForm.TelefonTextBox.Text = item.SubItems[5].Text;
+                pacientForm.EmailTextBox.Text = item.SubItems[6].Text;
+                pacientForm.VarstaTextBox.Text = item.SubItems[7].Text;
+                pacientForm.DataNasteriiDateTimePicker.Value = DateTime.Parse(item.SubItems[8].Text);
+                DialogResult result = pacientForm.ShowDialog();
+                if(pacientForm.checkValidation() && result == DialogResult.OK)
+                {
+                    pacienti[position].Id = int.Parse(pacientForm.IdTextBox.Text);
+                    pacienti[position].Nume = pacientForm.NumeTextBox.Text;
+                    pacienti[position].Prenume = pacientForm.PrenumeTextBox.Text;
+                    pacienti[position].CNP = pacientForm.CNPTextBox.Text;
+                    pacienti[position].Adresa = pacientForm.AdresaTextBox.Text;
+                    pacienti[position].Telefon = pacientForm.TelefonTextBox.Text;
+                    pacienti[position].Email = pacientForm.EmailTextBox.Text;
+                    pacienti[position].Varsta = int.Parse(pacientForm.VarstaTextBox.Text);
+                    pacienti[position].DataNasterii = pacientForm.DataNasteriiDateTimePicker.Value;
+                    updateListView();
+                }
+            }
+            if(listShow == "retete" && retete.Count > 0)
+            {
+                ListViewItem item = listView.SelectedItems[0];
+                int position = item.Index;
+                RetetaForm retetaForm = new RetetaForm();
+                retetaForm.IdTextBox.Text = item.SubItems[0].Text;
+                retetaForm.MedicTextBox.Text = item.SubItems[1].Text;
+                retetaForm.PacientTextBox.Text = item.SubItems[2].Text;
+                retetaForm.DiagnosticTextBox.Text = item.SubItems[3].Text;
+                retetaForm.TratamentTextBox.Text = item.SubItems[4].Text;
+                retetaForm.DataTimePicker.Value = DateTime.Parse(item.SubItems[5].Text);
+                DialogResult result = retetaForm.ShowDialog();
+                if(retetaForm.checkValidation() && result == DialogResult.OK)
+                {
+                    retete[position].Id = int.Parse(retetaForm.IdTextBox.Text);
+                    retete[position].Medic = retetaForm.MedicTextBox.Text;
+                    retete[position].Pacient = retetaForm.PacientTextBox.Text;
+                    retete[position].Diagnostic = retetaForm.DiagnosticTextBox.Text;
+                    retete[position].Tratament = retetaForm.TratamentTextBox.Text;
+                    retete[position].Data = retetaForm.DataTimePicker.Value;
+                    updateListView();
+                }
+            }
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(listView.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Selectati un element din lista");
+                return;
+            }
+            if(listShow == "medici" && medici.Count > 0)
+            {
+                ListViewItem item = listView.SelectedItems[0];
+                int position = item.Index;
+                medici.RemoveAt(position);
+                updateListView();
+            }
+            if(listShow == "pacienti" && medici.Count > 0)
+            {
+                ListViewItem item = listView.SelectedItems[0];
+                int position = item.Index;
+                pacienti.RemoveAt(position);
+                updateListView();
+            }
+            if(listShow == "retete" && medici.Count > 0)
+            {
+                ListViewItem item = listView.SelectedItems[0];
+                int position = item.Index;
+                retete.RemoveAt(position);
+                updateListView();
+            }
         }
     }
 }

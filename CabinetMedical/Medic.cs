@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace CabinetMedical
 {
+    [Serializable]
     internal class Medic
     {
         public int Id { get; set; }
