@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace CabinetMedical.Forms
@@ -18,31 +13,63 @@ namespace CabinetMedical.Forms
             InitializeComponent();
         }
 
+        public bool checkValidation()
+        {
+            if (MedicTextBox.Text == "" || PacientTextBox.Text == "" || DiagnosticTextBox.Text == "" || TratamentTextBox.Text == "" || DataTimePicker.Text == "")
+            {
+                MessageBox.Show("Toate campurile trebuie completate!");
+                return false;
+            }
+            if (Regex.Match(MedicTextBox.Text, @"^[a-zA-Z]+$").Success == false)
+            {
+                MessageBox.Show("Numele medicului trebuie sa contina doar litere!");
+                return false;
+            }
+            if (Regex.Match(PacientTextBox.Text, @"^[a-zA-Z]+$").Success == false)
+            {
+                MessageBox.Show("Numele pacientului trebuie sa contina doar litere!");
+                return false;
+            }
+            return true;
+        }
+
         private void SubmitButton_Click(object sender, EventArgs e)
         {
             if (MedicTextBox.Text == "" || PacientTextBox.Text == "" || DiagnosticTextBox.Text == "" || TratamentTextBox.Text == "" || DataTimePicker.Text == "")
             {
                 MessageBox.Show("Toate campurile trebuie completate!");
             }
-            else
+            if (Regex.Match(MedicTextBox.Text, @"^[a-zA-Z]+$").Success == false)
             {
-                retetaList.Add(new Reteta(MedicTextBox.Text, PacientTextBox.Text, DiagnosticTextBox.Text, TratamentTextBox.Text, DataTimePicker.Value));
-                MedicTextBox.Text = "";
-                PacientTextBox.Text = "";
-                DiagnosticTextBox.Text = "";
-                TratamentTextBox.Text = "";
-                DataTimePicker.Text = "";
+                MessageBox.Show("Numele medicului trebuie sa contina doar litere!");
+            }
+            if (Regex.Match(PacientTextBox.Text, @"^[a-zA-Z]+$").Success == false)
+            {
+                MessageBox.Show("Numele pacientului trebuie sa contina doar litere!");
             }
         }
 
-        private void SaveDataButton_Click(object sender, EventArgs e)
+        private void PacientTextBox_TextChanged(object sender, EventArgs e)
         {
-            using (var file = new System.IO.StreamWriter(@"C:\Users\Public\Documents\reteta.txt"))
+            if (Regex.Match(PacientTextBox.Text, @"^[a-zA-Z]+$").Success == false)
             {
-                foreach (var reteta in retetaList)
-                {
-                    file.WriteLine(reteta.ToString());
-                }
+                SubmitButton.DialogResult = DialogResult.None;
+            }
+            else
+            {
+                SubmitButton.DialogResult = DialogResult.OK;
+            }
+        }
+
+        private void MedicTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (Regex.Match(MedicTextBox.Text, @"^[a-zA-Z]+$").Success == false)
+            {
+                SubmitButton.DialogResult = DialogResult.None;
+            }
+            else
+            {
+                SubmitButton.DialogResult = DialogResult.OK;
             }
         }
     }

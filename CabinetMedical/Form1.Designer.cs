@@ -192,6 +192,7 @@
             this.retetaToolStripMenuItem.Name = "retetaToolStripMenuItem";
             this.retetaToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
             this.retetaToolStripMenuItem.Text = "Reteta";
+            this.retetaToolStripMenuItem.Click += new System.EventHandler(this.retetaToolStripMenuItem_Click);
             // 
             // Form1
             // 

@@ -11,6 +11,7 @@ namespace CabinetMedical
         private string listShow = "";
         private List<Medic> medici = new List<Medic>();
         private List<Pacient> pacienti = new List<Pacient>();
+        private List<Reteta> retete = new List<Reteta>();
         public Form1()
         {
             InitializeComponent();
@@ -75,6 +76,27 @@ namespace CabinetMedical
                     listView.Items.Add(item);
                 }
             }
+            if(listShow == "retete")
+            {
+                listView.Items.Clear();
+                listView.Columns.Clear();
+                listView.Columns.Add("Id");
+                listView.Columns.Add("Medic");
+                listView.Columns.Add("Pacient");
+                listView.Columns.Add("Diagnostic");
+                listView.Columns.Add("Tratament");
+                listView.Columns.Add("Data");
+                foreach (Reteta reteta in retete)
+                {
+                    ListViewItem item = new ListViewItem(reteta.Id.ToString());
+                    item.SubItems.Add(reteta.Medic);
+                    item.SubItems.Add(reteta.Pacient);
+                    item.SubItems.Add(reteta.Diagnostic);
+                    item.SubItems.Add(reteta.Tratament);
+                    item.SubItems.Add(reteta.Data.ToString());
+                    listView.Items.Add(item);
+                }
+            }
         }
 
         private void MedicButton_Click(object sender, EventArgs e)
@@ -93,7 +115,9 @@ namespace CabinetMedical
 
         private void RetetaButton_Click(object sender, EventArgs e)
         {
-
+            listView.Visible = true;
+            listShow = "retete";
+            updateListView();
         }
         private void medicToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -151,6 +175,29 @@ namespace CabinetMedical
                 pacient.Varsta = int.Parse(pacientForm.VarstaTextBox.Text);
                 pacient.DataNastere = pacientForm.DataNasteriiDateTimePicker.Value;
                 pacienti.Add(pacient);
+                updateListView();
+            }
+        }
+
+        private void retetaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RetetaForm retetaForm = new RetetaForm();
+            Reteta reteta = new Reteta();
+            retetaForm.IdTextBox.Text = retete.Count.ToString();
+            retetaForm.MedicTextBox.Text = reteta.Medic.ToString();
+            retetaForm.PacientTextBox.Text = reteta.Pacient.ToString();
+            retetaForm.DiagnosticTextBox.Text = reteta.Diagnostic.ToString();
+            retetaForm.TratamentTextBox.Text = reteta.Tratament.ToString();
+            DialogResult result = retetaForm.ShowDialog();
+            if (retetaForm.checkValidation() && result == DialogResult.OK)
+            {
+                reteta.Id = int.Parse(retetaForm.IdTextBox.Text);
+                reteta.Medic = retetaForm.MedicTextBox.Text;
+                reteta.Pacient = retetaForm.PacientTextBox.Text;
+                reteta.Diagnostic = retetaForm.DiagnosticTextBox.Text;
+                reteta.Tratament = retetaForm.TratamentTextBox.Text;
+                reteta.Data = retetaForm.DataTimePicker.Value;
+                retete.Add(reteta);
                 updateListView();
             }
         }
