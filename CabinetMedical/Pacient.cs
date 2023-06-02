@@ -3,7 +3,7 @@
 namespace CabinetMedical
 {
     [Serializable]
-    internal class Pacient
+    public class Pacient
     {
         public int Id { get; set; }
         public string Nume { get; set; }

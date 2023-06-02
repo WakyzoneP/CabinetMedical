@@ -3,7 +3,7 @@
 namespace CabinetMedical
 {
     [Serializable]
-    internal class Reteta
+    public class Reteta
     {
         public int Id { get; set; }
         public string Medic { get; set; }

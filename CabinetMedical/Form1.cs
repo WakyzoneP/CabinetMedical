@@ -446,5 +446,12 @@ namespace CabinetMedical
                 updateListView();
             }
         }
+
+        private void chartToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Chart chart = new Chart();
+            chart.pacienti = pacienti;
+            chart.Show();
+        }
     }
 }
