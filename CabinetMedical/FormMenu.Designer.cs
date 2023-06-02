@@ -1,6 +1,6 @@
 ﻿namespace CabinetMedical
 {
-    partial class Form1
+    partial class FormMenu
     {
         /// <summary>
         /// Required designer variable.
@@ -49,8 +49,11 @@
             this.retetaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.listView = new System.Windows.Forms.ListView();
             this.chartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.listView = new System.Windows.Forms.ListView();
+            this.databaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.insertIntoDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.getDataFromDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -109,10 +112,11 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.insertToolStripMenuItem,
-            this.chartToolStripMenuItem});
+            this.chartToolStripMenuItem,
+            this.databaseToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1674, 42);
+            this.menuStrip1.Size = new System.Drawing.Size(1674, 48);
             this.menuStrip1.TabIndex = 6;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -242,6 +246,13 @@
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
+            // chartToolStripMenuItem
+            // 
+            this.chartToolStripMenuItem.Name = "chartToolStripMenuItem";
+            this.chartToolStripMenuItem.Size = new System.Drawing.Size(91, 38);
+            this.chartToolStripMenuItem.Text = "Chart";
+            this.chartToolStripMenuItem.Click += new System.EventHandler(this.chartToolStripMenuItem_Click);
+            // 
             // listView
             // 
             this.listView.HideSelection = false;
@@ -252,16 +263,33 @@
             this.listView.UseCompatibleStateImageBehavior = false;
             this.listView.View = System.Windows.Forms.View.Details;
             // 
-            // chartToolStripMenuItem
+            // databaseToolStripMenuItem
             // 
-            this.chartToolStripMenuItem.Name = "chartToolStripMenuItem";
-            this.chartToolStripMenuItem.Size = new System.Drawing.Size(91, 38);
-            this.chartToolStripMenuItem.Text = "Chart";
-            this.chartToolStripMenuItem.Click += new System.EventHandler(this.chartToolStripMenuItem_Click);
+            this.databaseToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.insertIntoDatabaseToolStripMenuItem,
+            this.getDataFromDatabaseToolStripMenuItem});
+            this.databaseToolStripMenuItem.Name = "databaseToolStripMenuItem";
+            this.databaseToolStripMenuItem.Size = new System.Drawing.Size(132, 38);
+            this.databaseToolStripMenuItem.Text = "Database";
             // 
-            // Form1
+            // insertIntoDatabaseToolStripMenuItem
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.insertIntoDatabaseToolStripMenuItem.Name = "insertIntoDatabaseToolStripMenuItem";
+            this.insertIntoDatabaseToolStripMenuItem.Size = new System.Drawing.Size(397, 44);
+            this.insertIntoDatabaseToolStripMenuItem.Text = "Add to database";
+            this.insertIntoDatabaseToolStripMenuItem.Click += new System.EventHandler(this.insertIntoDatabaseToolStripMenuItem_Click);
+            // 
+            // getDataFromDatabaseToolStripMenuItem
+            // 
+            this.getDataFromDatabaseToolStripMenuItem.Name = "getDataFromDatabaseToolStripMenuItem";
+            this.getDataFromDatabaseToolStripMenuItem.Size = new System.Drawing.Size(397, 44);
+            this.getDataFromDatabaseToolStripMenuItem.Text = "Get data from database";
+            this.getDataFromDatabaseToolStripMenuItem.Click += new System.EventHandler(this.getDataFromDatabaseToolStripMenuItem_Click);
+            // 
+            // FormMenu
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(157)))), ((int)(((byte)(187)))));
             this.ClientSize = new System.Drawing.Size(1674, 911);
             this.Controls.Add(this.listView);
@@ -271,7 +299,7 @@
             this.Controls.Add(this.MedicButton);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Form1";
+            this.Name = "FormMenu";
             this.Text = "Form1";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -304,6 +332,9 @@
         private System.Windows.Forms.ToolStripMenuItem updateToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem chartToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem databaseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem insertIntoDatabaseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem getDataFromDatabaseToolStripMenuItem;
     }
 }
 

@@ -2,22 +2,26 @@
 using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
 
 namespace CabinetMedical
 {
-    public partial class Form1 : Form
+    public partial class FormMenu : Form
     {
         private string listShow = "";
         private List<Medic> medici = new List<Medic>();
         private List<Pacient> pacienti = new List<Pacient>();
         private List<Reteta> retete = new List<Reteta>();
-        public Form1()
+        private SqlConnection SqlConnection = null;
+        public FormMenu()
         {
             InitializeComponent();
             listView.Visible = false;
+            string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\vlad\\source\\repos\\CabinetMedical\\CabinetMedical\\Database.mdf;Integrated Security=True";
+            SqlConnection = new SqlConnection(connectionString);
         }
 
         private void updateListView()
@@ -327,12 +331,12 @@ namespace CabinetMedical
 
         private void updateToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if(listView.SelectedItems.Count == 0)
+            if (listView.SelectedItems.Count == 0)
             {
                 MessageBox.Show("Selectati un element din lista");
                 return;
             }
-            if(listShow == "medici" && medici.Count > 0)
+            if (listShow == "medici" && medici.Count > 0)
             {
                 ListViewItem item = listView.SelectedItems[0];
                 int position = item.Index;
@@ -348,7 +352,7 @@ namespace CabinetMedical
                 medicForm.DataAngajareDateTimePicker.Value = DateTime.Parse(item.SubItems[8].Text);
                 medicForm.SalariulTextBox.Text = item.SubItems[9].Text;
                 DialogResult result = medicForm.ShowDialog();
-                if(medicForm.checkValidation() && result == DialogResult.OK)
+                if (medicForm.checkValidation() && result == DialogResult.OK)
                 {
                     medici[position].Id = int.Parse(medicForm.IdTextBox.Text);
                     medici[position].Nume = medicForm.NumeTextBox.Text;
@@ -363,7 +367,7 @@ namespace CabinetMedical
                     updateListView();
                 }
             }
-            if(listShow == "pacienti" && pacienti.Count > 0)
+            if (listShow == "pacienti" && pacienti.Count > 0)
             {
                 ListViewItem item = listView.SelectedItems[0];
                 int position = item.Index;
@@ -378,7 +382,7 @@ namespace CabinetMedical
                 pacientForm.VarstaTextBox.Text = item.SubItems[7].Text;
                 pacientForm.DataNasteriiDateTimePicker.Value = DateTime.Parse(item.SubItems[8].Text);
                 DialogResult result = pacientForm.ShowDialog();
-                if(pacientForm.checkValidation() && result == DialogResult.OK)
+                if (pacientForm.checkValidation() && result == DialogResult.OK)
                 {
                     pacienti[position].Id = int.Parse(pacientForm.IdTextBox.Text);
                     pacienti[position].Nume = pacientForm.NumeTextBox.Text;
@@ -392,7 +396,7 @@ namespace CabinetMedical
                     updateListView();
                 }
             }
-            if(listShow == "retete" && retete.Count > 0)
+            if (listShow == "retete" && retete.Count > 0)
             {
                 ListViewItem item = listView.SelectedItems[0];
                 int position = item.Index;
@@ -404,7 +408,7 @@ namespace CabinetMedical
                 retetaForm.TratamentTextBox.Text = item.SubItems[4].Text;
                 retetaForm.DataTimePicker.Value = DateTime.Parse(item.SubItems[5].Text);
                 DialogResult result = retetaForm.ShowDialog();
-                if(retetaForm.checkValidation() && result == DialogResult.OK)
+                if (retetaForm.checkValidation() && result == DialogResult.OK)
                 {
                     retete[position].Id = int.Parse(retetaForm.IdTextBox.Text);
                     retete[position].Medic = retetaForm.MedicTextBox.Text;
@@ -419,26 +423,26 @@ namespace CabinetMedical
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if(listView.SelectedItems.Count == 0)
+            if (listView.SelectedItems.Count == 0)
             {
                 MessageBox.Show("Selectati un element din lista");
                 return;
             }
-            if(listShow == "medici" && medici.Count > 0)
+            if (listShow == "medici" && medici.Count > 0)
             {
                 ListViewItem item = listView.SelectedItems[0];
                 int position = item.Index;
                 medici.RemoveAt(position);
                 updateListView();
             }
-            if(listShow == "pacienti" && medici.Count > 0)
+            if (listShow == "pacienti" && medici.Count > 0)
             {
                 ListViewItem item = listView.SelectedItems[0];
                 int position = item.Index;
                 pacienti.RemoveAt(position);
                 updateListView();
             }
-            if(listShow == "retete" && medici.Count > 0)
+            if (listShow == "retete" && medici.Count > 0)
             {
                 ListViewItem item = listView.SelectedItems[0];
                 int position = item.Index;
@@ -451,7 +455,122 @@ namespace CabinetMedical
         {
             Chart chart = new Chart();
             chart.pacienti = pacienti;
-            chart.Show();
+            chart.ShowDialog();
+        }
+
+        private void insertIntoDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SqlConnection.Open();
+                foreach (Medic medic in medici)
+                {
+                    string query = "INSERT INTO Medici(Nume, Prenume, Specializare, Telefon, Email, CNP, DataAngajarii, Salariul) VALUES(@Nume, @Prenume, @Specializare, @Telefon, @Email, @CNP, @DataAngajarii, @Salariul)";
+                    SqlCommand command = new SqlCommand(query, SqlConnection);
+                    command.Parameters.AddWithValue("@Nume", medic.Nume);
+                    command.Parameters.AddWithValue("@Prenume", medic.Prenume);
+                    command.Parameters.AddWithValue("@Specializare", medic.Specializare);
+                    command.Parameters.AddWithValue("@Telefon", medic.Telefon);
+                    command.Parameters.AddWithValue("@Email", medic.Email);
+                    command.Parameters.AddWithValue("@CNP", medic.CNP);
+                    command.Parameters.AddWithValue("@DataAngajarii", medic.DataAngajarii);
+                    command.Parameters.AddWithValue("@Salariul", medic.Salariul);
+                    command.ExecuteNonQuery();
+                }
+                foreach (Pacient pacient in pacienti)
+                {
+                    SqlCommand command = new SqlCommand("INSERT INTO Pacienti VALUES(@Nume, @Prenume, @CNP, @Adresa, @Telefon, @Email, @Varsta, @DataNasterii)", SqlConnection);
+                    command.Parameters.AddWithValue("@Nume", pacient.Nume);
+                    command.Parameters.AddWithValue("@Prenume", pacient.Prenume);
+                    command.Parameters.AddWithValue("@CNP", pacient.CNP);
+                    command.Parameters.AddWithValue("@Adresa", pacient.Adresa);
+                    command.Parameters.AddWithValue("@Telefon", pacient.Telefon);
+                    command.Parameters.AddWithValue("@Email", pacient.Email);
+                    command.Parameters.AddWithValue("@Varsta", pacient.Varsta);
+                    command.Parameters.AddWithValue("@DataNasterii", pacient.DataNasterii);
+                    command.ExecuteNonQuery();
+                }
+                foreach (Reteta reteta in retete)
+                {
+                    SqlCommand command = new SqlCommand("INSERT INTO Retete VALUES(@Medic, @Pacient, @Diagnostic, @Tratament, @Data)", SqlConnection);
+                    command.Parameters.AddWithValue("@Medic", reteta.Medic);
+                    command.Parameters.AddWithValue("@Pacient", reteta.Pacient);
+                    command.Parameters.AddWithValue("@Diagnostic", reteta.Diagnostic);
+                    command.Parameters.AddWithValue("@Tratament", reteta.Tratament);
+                    command.Parameters.AddWithValue("@Data", reteta.Data);
+                    command.ExecuteNonQuery();
+                }
+                MessageBox.Show("Datele au fost inserate cu succes");
+                SqlConnection.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void getDataFromDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SqlConnection.Open();
+                medici.Clear();
+                pacienti.Clear();
+                retete.Clear();
+                SqlCommand comm = new SqlCommand("SELECT * FROM medici", SqlConnection);
+                SqlDataReader reader = comm.ExecuteReader();
+                while (reader.Read())
+                {
+                    Medic medic = new Medic();
+                    medic.Id = int.Parse(reader["Id"].ToString());
+                    medic.Nume = reader["Nume"].ToString();
+                    medic.Prenume = reader["Prenume"].ToString();
+                    medic.Specializare = reader["Specializare"].ToString();
+                    medic.Telefon = reader["Telefon"].ToString();
+                    medic.Email = reader["Email"].ToString();
+                    medic.CNP = reader["CNP"].ToString();
+                    medic.DataAngajarii = DateTime.Parse(reader["DataAngajarii"].ToString());
+                    medic.Salariul = int.Parse(reader["Salariul"].ToString());
+                    medici.Add(medic);
+                }
+                reader.Close();
+                comm = new SqlCommand("SELECT * FROM pacienti", SqlConnection);
+                reader = comm.ExecuteReader();
+                while (reader.Read())
+                {
+                    Pacient pacient = new Pacient();
+                    pacient.Id = int.Parse(reader["Id"].ToString());
+                    pacient.Nume = reader["Nume"].ToString();
+                    pacient.Prenume = reader["Prenume"].ToString();
+                    pacient.CNP = reader["CNP"].ToString();
+                    pacient.Adresa = reader["Adresa"].ToString();
+                    pacient.Telefon = reader["Telefon"].ToString();
+                    pacient.Email = reader["Email"].ToString();
+                    pacient.Varsta = int.Parse(reader["Varsta"].ToString());
+                    pacient.DataNasterii = DateTime.Parse(reader["DataNasterii"].ToString());
+                    pacienti.Add(pacient);
+                }
+                reader.Close();
+                comm = new SqlCommand("SELECT * FROM retete", SqlConnection);
+                reader = comm.ExecuteReader();
+                while (reader.Read())
+                {
+                    Reteta reteta = new Reteta();
+                    reteta.Id = int.Parse(reader["Id"].ToString());
+                    reteta.Medic = reader["Medic"].ToString();
+                    reteta.Pacient = reader["Pacient"].ToString();
+                    reteta.Diagnostic = reader["Diagnostic"].ToString();
+                    reteta.Tratament = reader["Tratament"].ToString();
+                    reteta.Data = DateTime.Parse(reader["Data"].ToString());
+                    retete.Add(reteta);
+                }
+                reader.Close();
+                updateListView();
+                SqlConnection.Close();
+            } catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

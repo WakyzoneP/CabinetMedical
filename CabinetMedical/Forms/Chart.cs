@@ -16,11 +16,6 @@ namespace CabinetMedical.Forms
         }
         public void SetPacienti(List<Pacient> pacienti) => this.pacienti = pacienti;
 
-        private void elementHost1_ChildChanged(object sender, System.Windows.Forms.Integration.ChildChangedEventArgs e)
-        {
-
-        }
-
         private void Chart_Load(object sender, EventArgs e)
         {
             int[] intervalVarste = new int[10];

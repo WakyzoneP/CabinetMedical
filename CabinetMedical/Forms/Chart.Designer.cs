@@ -39,7 +39,6 @@
             this.elementHost1.Size = new System.Drawing.Size(1434, 847);
             this.elementHost1.TabIndex = 0;
             this.elementHost1.Text = "elementHost1";
-            this.elementHost1.ChildChanged += new System.EventHandler<System.Windows.Forms.Integration.ChildChangedEventArgs>(this.elementHost1_ChildChanged);
             this.elementHost1.Child = this.cartesianChart1;
             // 
             // Chart
@@ -57,7 +56,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Integration.ElementHost elementHost1;
-        private LiveCharts.Wpf.CartesianChart cartesianChart1;
+        public System.Windows.Forms.Integration.ElementHost elementHost1;
+        public LiveCharts.Wpf.CartesianChart cartesianChart1;
     }
 }
