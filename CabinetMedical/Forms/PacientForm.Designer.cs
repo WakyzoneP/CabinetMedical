@@ -47,13 +47,15 @@
             this.label3 = new System.Windows.Forms.Label();
             this.IdTextBox = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.printButton = new System.Windows.Forms.Button();
+            this.printDocument = new System.Drawing.Printing.PrintDocument();
             this.SuspendLayout();
             // 
             // SubmitButton
             // 
             this.SubmitButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.SubmitButton.Font = new System.Drawing.Font("Arial", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SubmitButton.Location = new System.Drawing.Point(498, 657);
+            this.SubmitButton.Location = new System.Drawing.Point(341, 650);
             this.SubmitButton.Name = "SubmitButton";
             this.SubmitButton.Size = new System.Drawing.Size(240, 69);
             this.SubmitButton.TabIndex = 41;
@@ -230,12 +232,29 @@
             this.label8.TabIndex = 45;
             this.label8.Text = "ID:";
             // 
+            // printButton
+            // 
+            this.printButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.printButton.Font = new System.Drawing.Font("Arial", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.printButton.Location = new System.Drawing.Point(587, 650);
+            this.printButton.Name = "printButton";
+            this.printButton.Size = new System.Drawing.Size(240, 69);
+            this.printButton.TabIndex = 47;
+            this.printButton.Text = "Print";
+            this.printButton.UseVisualStyleBackColor = true;
+            this.printButton.Click += new System.EventHandler(this.printButton_Click);
+            // 
+            // printDocument
+            // 
+            this.printDocument.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument_PrintPage);
+            // 
             // PacientForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PeachPuff;
             this.ClientSize = new System.Drawing.Size(1198, 750);
+            this.Controls.Add(this.printButton);
             this.Controls.Add(this.IdTextBox);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.AdresaTextBox);
@@ -285,5 +304,7 @@
         public System.Windows.Forms.TextBox PrenumeTextBox;
         public System.Windows.Forms.TextBox NumeTextBox;
         public System.Windows.Forms.TextBox AdresaTextBox;
+        private System.Windows.Forms.Button printButton;
+        private System.Drawing.Printing.PrintDocument printDocument;
     }
 }

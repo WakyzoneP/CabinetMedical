@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing.Printing;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace CabinetMedical.Forms

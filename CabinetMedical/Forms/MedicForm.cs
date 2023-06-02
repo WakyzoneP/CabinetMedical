@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Drawing;
+using System.Drawing.Printing;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -141,7 +143,7 @@ namespace CabinetMedical.Forms
         {
             if (Regex.Match(TelefonTextBox.Text, @"^[0-9]+$").Success == false)
             {
-                SubmitButton.DialogResult= DialogResult.None;
+                SubmitButton.DialogResult = DialogResult.None;
             }
             else
             {
@@ -151,7 +153,7 @@ namespace CabinetMedical.Forms
 
         private void EmailTextBox_TextChanged(object sender, EventArgs e)
         {
-            if(Regex.Match(EmailTextBox.Text, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$").Success == false)
+            if (Regex.Match(EmailTextBox.Text, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$").Success == false)
             {
                 SubmitButton.DialogResult = DialogResult.None;
             }
@@ -163,7 +165,7 @@ namespace CabinetMedical.Forms
 
         private void VarstaTextBox_TextChanged(object sender, EventArgs e)
         {
-            if(Regex.Match(VarstaTextBox.Text, @"^[0-9]+$").Success == false)
+            if (Regex.Match(VarstaTextBox.Text, @"^[0-9]+$").Success == false)
             {
                 SubmitButton.DialogResult = DialogResult.None;
             }
@@ -175,7 +177,7 @@ namespace CabinetMedical.Forms
 
         private void CNPTextBox_TextChanged(object sender, EventArgs e)
         {
-            if(Regex.Match(CNPTextBox.Text, @"^[0-9]+$").Success == false)
+            if (Regex.Match(CNPTextBox.Text, @"^[0-9]+$").Success == false)
             {
                 SubmitButton.DialogResult = DialogResult.None;
             }
@@ -187,7 +189,7 @@ namespace CabinetMedical.Forms
 
         private void SalariulTextBox_TextChanged(object sender, EventArgs e)
         {
-            if(Regex.Match(SalariulTextBox.Text, @"^[0-9]+$").Success == false)
+            if (Regex.Match(SalariulTextBox.Text, @"^[0-9]+$").Success == false)
             {
                 SubmitButton.DialogResult = DialogResult.None;
             }
@@ -195,6 +197,32 @@ namespace CabinetMedical.Forms
             {
                 SubmitButton.DialogResult = DialogResult.OK;
             }
+        }
+
+        Bitmap printBitmap;
+
+        private void printDocument_PrintPage(object sender, PrintPageEventArgs e)
+        {
+            e.Graphics.DrawImage(printBitmap, 0, 0);
+        }
+
+        private void printButton_Click(object sender, EventArgs e)
+        {
+            Panel panel = new Panel();
+            this.Controls.Add(panel);
+
+            Graphics grp = panel.CreateGraphics();
+            Size formSize = this.ClientSize;
+
+            printBitmap = new Bitmap(formSize.Width, formSize.Height, grp);
+            grp = Graphics.FromImage(printBitmap);
+            Point panelLocation = PointToScreen(panel.Location);
+            grp.CopyFromScreen(panelLocation.X, panelLocation.Y, 0, 0, formSize);
+
+            PrintPreviewDialog printPreviewDialog = new PrintPreviewDialog();
+            printPreviewDialog.Document = printDocument;
+            printPreviewDialog.PrintPreviewControl.Zoom = 1;
+            printPreviewDialog.ShowDialog();
         }
     }
 }

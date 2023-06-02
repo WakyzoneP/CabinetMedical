@@ -49,6 +49,8 @@
             this.SubmitButton = new System.Windows.Forms.Button();
             this.IdTextBox = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
+            this.printButton = new System.Windows.Forms.Button();
+            this.printDocument = new System.Drawing.Printing.PrintDocument();
             this.SuspendLayout();
             // 
             // NumeTextBox
@@ -223,7 +225,7 @@
             // 
             this.SubmitButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.SubmitButton.Font = new System.Drawing.Font("Arial", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SubmitButton.Location = new System.Drawing.Point(457, 621);
+            this.SubmitButton.Location = new System.Drawing.Point(337, 623);
             this.SubmitButton.Name = "SubmitButton";
             this.SubmitButton.Size = new System.Drawing.Size(240, 69);
             this.SubmitButton.TabIndex = 21;
@@ -251,12 +253,29 @@
             this.label10.TabIndex = 22;
             this.label10.Text = "ID";
             // 
+            // printButton
+            // 
+            this.printButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.printButton.Font = new System.Drawing.Font("Arial", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.printButton.Location = new System.Drawing.Point(598, 623);
+            this.printButton.Name = "printButton";
+            this.printButton.Size = new System.Drawing.Size(240, 69);
+            this.printButton.TabIndex = 24;
+            this.printButton.Text = "Print";
+            this.printButton.UseVisualStyleBackColor = true;
+            this.printButton.Click += new System.EventHandler(this.printButton_Click);
+            // 
+            // printDocument
+            // 
+            this.printDocument.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument_PrintPage);
+            // 
             // MedicForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PeachPuff;
             this.ClientSize = new System.Drawing.Size(1198, 750);
+            this.Controls.Add(this.printButton);
             this.Controls.Add(this.IdTextBox);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.SubmitButton);
@@ -307,5 +326,7 @@
         public System.Windows.Forms.DateTimePicker DataAngajareDateTimePicker;
         public System.Windows.Forms.TextBox IdTextBox;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Button printButton;
+        private System.Drawing.Printing.PrintDocument printDocument;
     }
 }

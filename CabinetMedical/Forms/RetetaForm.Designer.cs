@@ -41,6 +41,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.IdTextBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.printDocument = new System.Drawing.Printing.PrintDocument();
+            this.printButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // MedicTextBox
@@ -66,7 +68,7 @@
             // 
             this.SubmitButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.SubmitButton.Font = new System.Drawing.Font("Arial", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SubmitButton.Location = new System.Drawing.Point(460, 653);
+            this.SubmitButton.Location = new System.Drawing.Point(328, 652);
             this.SubmitButton.Name = "SubmitButton";
             this.SubmitButton.Size = new System.Drawing.Size(236, 69);
             this.SubmitButton.TabIndex = 2;
@@ -167,6 +169,22 @@
             this.label6.TabIndex = 11;
             this.label6.Text = "ID:";
             // 
+            // printDocument
+            // 
+            this.printDocument.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument_PrintPage);
+            // 
+            // printButton
+            // 
+            this.printButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.printButton.Font = new System.Drawing.Font("Arial", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.printButton.Location = new System.Drawing.Point(570, 652);
+            this.printButton.Name = "printButton";
+            this.printButton.Size = new System.Drawing.Size(236, 69);
+            this.printButton.TabIndex = 13;
+            this.printButton.Text = "Print";
+            this.printButton.UseVisualStyleBackColor = true;
+            this.printButton.Click += new System.EventHandler(this.printButton_Click);
+            // 
             // RetetaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -174,6 +192,7 @@
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.PeachPuff;
             this.ClientSize = new System.Drawing.Size(1198, 750);
+            this.Controls.Add(this.printButton);
             this.Controls.Add(this.IdTextBox);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -208,5 +227,7 @@
         public System.Windows.Forms.TextBox DiagnosticTextBox;
         public System.Windows.Forms.TextBox TratamentTextBox;
         public System.Windows.Forms.DateTimePicker DataTimePicker;
+        private System.Drawing.Printing.PrintDocument printDocument;
+        private System.Windows.Forms.Button printButton;
     }
 }

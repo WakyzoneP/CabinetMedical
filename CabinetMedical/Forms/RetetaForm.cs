@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -71,6 +72,32 @@ namespace CabinetMedical.Forms
             {
                 SubmitButton.DialogResult = DialogResult.OK;
             }
+        }
+
+        Bitmap printBitmap;
+
+        private void printButton_Click(object sender, EventArgs e)
+        {
+            Panel panel = new Panel();
+            this.Controls.Add(panel);
+
+            Graphics grp = panel.CreateGraphics();
+            Size formSize = this.ClientSize;
+
+            printBitmap = new Bitmap(formSize.Width, formSize.Height, grp);
+            grp = Graphics.FromImage(printBitmap);
+            Point panelLocation = PointToScreen(panel.Location);
+            grp.CopyFromScreen(panelLocation.X, panelLocation.Y, 0, 0, formSize);
+
+            PrintPreviewDialog printPreviewDialog = new PrintPreviewDialog();
+            printPreviewDialog.Document = printDocument;
+            printPreviewDialog.PrintPreviewControl.Zoom = 1;
+            printPreviewDialog.ShowDialog();
+        }
+
+        private void printDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            e.Graphics.DrawImage(printBitmap, 0, 0);
         }
     }
 }
