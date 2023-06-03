@@ -50,11 +50,11 @@
             this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewChartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.databaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.insertIntoDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.getDataFromDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listView = new System.Windows.Forms.ListView();
-            this.viewChartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -117,7 +117,7 @@
             this.databaseToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1674, 42);
+            this.menuStrip1.Size = new System.Drawing.Size(1674, 48);
             this.menuStrip1.TabIndex = 6;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -127,7 +127,7 @@
             this.saveToolStripMenuItem,
             this.openToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(71, 38);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(71, 44);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // saveToolStripMenuItem
@@ -199,7 +199,7 @@
             this.updateToolStripMenuItem,
             this.deleteToolStripMenuItem});
             this.insertToolStripMenuItem.Name = "insertToolStripMenuItem";
-            this.insertToolStripMenuItem.Size = new System.Drawing.Size(121, 38);
+            this.insertToolStripMenuItem.Size = new System.Drawing.Size(121, 44);
             this.insertToolStripMenuItem.Text = "Manage";
             // 
             // insertToolStripMenuItem1
@@ -252,8 +252,15 @@
             this.chartToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.viewChartToolStripMenuItem});
             this.chartToolStripMenuItem.Name = "chartToolStripMenuItem";
-            this.chartToolStripMenuItem.Size = new System.Drawing.Size(91, 38);
+            this.chartToolStripMenuItem.Size = new System.Drawing.Size(91, 44);
             this.chartToolStripMenuItem.Text = "Chart";
+            // 
+            // viewChartToolStripMenuItem
+            // 
+            this.viewChartToolStripMenuItem.Name = "viewChartToolStripMenuItem";
+            this.viewChartToolStripMenuItem.Size = new System.Drawing.Size(262, 44);
+            this.viewChartToolStripMenuItem.Text = "View Chart";
+            this.viewChartToolStripMenuItem.Click += new System.EventHandler(this.viewChartToolStripMenuItem_Click);
             // 
             // databaseToolStripMenuItem
             // 
@@ -261,7 +268,7 @@
             this.insertIntoDatabaseToolStripMenuItem,
             this.getDataFromDatabaseToolStripMenuItem});
             this.databaseToolStripMenuItem.Name = "databaseToolStripMenuItem";
-            this.databaseToolStripMenuItem.Size = new System.Drawing.Size(132, 38);
+            this.databaseToolStripMenuItem.Size = new System.Drawing.Size(132, 44);
             this.databaseToolStripMenuItem.Text = "Database";
             // 
             // insertIntoDatabaseToolStripMenuItem
@@ -288,17 +295,9 @@
             this.listView.UseCompatibleStateImageBehavior = false;
             this.listView.View = System.Windows.Forms.View.Details;
             // 
-            // viewChartToolStripMenuItem
-            // 
-            this.viewChartToolStripMenuItem.Name = "viewChartToolStripMenuItem";
-            this.viewChartToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
-            this.viewChartToolStripMenuItem.Text = "View Chart";
-            this.viewChartToolStripMenuItem.Click += new System.EventHandler(this.viewChartToolStripMenuItem_Click);
-            // 
             // FormMenu
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(157)))), ((int)(((byte)(187)))));
             this.ClientSize = new System.Drawing.Size(1674, 911);
             this.Controls.Add(this.listView);
