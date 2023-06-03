@@ -22,6 +22,9 @@ namespace CabinetMedical
             listView.Visible = false;
             string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\vlad\\source\\repos\\CabinetMedical\\CabinetMedical\\Database.mdf;Integrated Security=True";
             SqlConnection = new SqlConnection(connectionString);
+            ControlExtension.Draggable(MedicButton, true);
+            ControlExtension.Draggable(PacientButton, true);
+            ControlExtension.Draggable(RetetaButton, true);
         }
 
         private void updateListView()
@@ -450,8 +453,7 @@ namespace CabinetMedical
                 updateListView();
             }
         }
-
-        private void chartToolStripMenuItem_Click(object sender, EventArgs e)
+        private void viewChartToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Chart chart = new Chart();
             chart.pacienti = pacienti;

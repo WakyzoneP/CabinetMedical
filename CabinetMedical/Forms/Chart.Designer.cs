@@ -36,7 +36,7 @@
             // 
             this.elementHost1.Location = new System.Drawing.Point(26, 22);
             this.elementHost1.Name = "elementHost1";
-            this.elementHost1.Size = new System.Drawing.Size(1434, 847);
+            this.elementHost1.Size = new System.Drawing.Size(1138, 690);
             this.elementHost1.TabIndex = 0;
             this.elementHost1.Text = "elementHost1";
             this.elementHost1.Child = this.cartesianChart1;
@@ -45,7 +45,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1510, 924);
+            this.ClientSize = new System.Drawing.Size(1198, 750);
             this.Controls.Add(this.elementHost1);
             this.Name = "Chart";
             this.Text = "Chart";

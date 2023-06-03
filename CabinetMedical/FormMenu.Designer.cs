@@ -50,10 +50,11 @@
             this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.listView = new System.Windows.Forms.ListView();
             this.databaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.insertIntoDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.getDataFromDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.listView = new System.Windows.Forms.ListView();
+            this.viewChartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -116,7 +117,7 @@
             this.databaseToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1674, 48);
+            this.menuStrip1.Size = new System.Drawing.Size(1674, 42);
             this.menuStrip1.TabIndex = 6;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -248,20 +249,11 @@
             // 
             // chartToolStripMenuItem
             // 
+            this.chartToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.viewChartToolStripMenuItem});
             this.chartToolStripMenuItem.Name = "chartToolStripMenuItem";
             this.chartToolStripMenuItem.Size = new System.Drawing.Size(91, 38);
             this.chartToolStripMenuItem.Text = "Chart";
-            this.chartToolStripMenuItem.Click += new System.EventHandler(this.chartToolStripMenuItem_Click);
-            // 
-            // listView
-            // 
-            this.listView.HideSelection = false;
-            this.listView.Location = new System.Drawing.Point(439, 109);
-            this.listView.Name = "listView";
-            this.listView.Size = new System.Drawing.Size(1223, 790);
-            this.listView.TabIndex = 7;
-            this.listView.UseCompatibleStateImageBehavior = false;
-            this.listView.View = System.Windows.Forms.View.Details;
             // 
             // databaseToolStripMenuItem
             // 
@@ -285,6 +277,23 @@
             this.getDataFromDatabaseToolStripMenuItem.Size = new System.Drawing.Size(397, 44);
             this.getDataFromDatabaseToolStripMenuItem.Text = "Get data from database";
             this.getDataFromDatabaseToolStripMenuItem.Click += new System.EventHandler(this.getDataFromDatabaseToolStripMenuItem_Click);
+            // 
+            // listView
+            // 
+            this.listView.HideSelection = false;
+            this.listView.Location = new System.Drawing.Point(439, 109);
+            this.listView.Name = "listView";
+            this.listView.Size = new System.Drawing.Size(1223, 790);
+            this.listView.TabIndex = 7;
+            this.listView.UseCompatibleStateImageBehavior = false;
+            this.listView.View = System.Windows.Forms.View.Details;
+            // 
+            // viewChartToolStripMenuItem
+            // 
+            this.viewChartToolStripMenuItem.Name = "viewChartToolStripMenuItem";
+            this.viewChartToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
+            this.viewChartToolStripMenuItem.Text = "View Chart";
+            this.viewChartToolStripMenuItem.Click += new System.EventHandler(this.viewChartToolStripMenuItem_Click);
             // 
             // FormMenu
             // 
@@ -335,6 +344,7 @@
         private System.Windows.Forms.ToolStripMenuItem databaseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem insertIntoDatabaseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem getDataFromDatabaseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem viewChartToolStripMenuItem;
     }
 }
 
